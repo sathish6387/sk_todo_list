@@ -1,0 +1,71 @@
+/* Minimal reset */
+* { box-sizing: border-box; }
+:root{
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --danger: #ef4444;
+  --glass: rgba(37,99,235,0.06);
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  --transition: 160ms cubic-bezier(.2,.8,.2,1);
+}
+
+body{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: var(--bg); margin:0; color:#0f172a; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+.app{ max-width:720px; margin:40px auto; padding:16px; }
+
+.app-header{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px; flex-wrap:wrap; }
+.title{ margin:0; font-size:1.5rem; letter-spacing: -0.02em; }
+.controls{ display:flex; gap:8px; align-items:center; }
+.meta{ display:flex; align-items:center; }
+.count-badge{ background:linear-gradient(90deg, rgba(37,99,235,0.08), rgba(37,99,235,0.04)); color:var(--accent); padding:6px 8px; border-radius:999px; font-weight:600; font-size:0.9rem; }
+.icon-btn{ background:transparent; border:0; cursor:pointer; font-size:1.1rem; padding:8px; border-radius:8px; transition:background var(--transition), transform var(--transition); }
+.icon-btn:hover{ background:var(--glass); transform:translateY(-1px); }
+.icon-btn[aria-pressed='true']{ background:var(--glass); color:var(--accent); }
+.primary:disabled{ opacity:0.6; cursor:not-allowed; transform:none; }
+.todo-item{ display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent); transition:transform var(--transition), box-shadow var(--transition); }
+.todo-item:hover{ transform:translateY(-3px); box-shadow:0 10px 24px rgba(15,23,42,0.06); }
+
+.card{ background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:14px; }
+.add-card{ margin-bottom:14px; }
+.form{ display:flex; gap:10px; }
+.form input{ flex:1; padding:12px 14px; border-radius:10px; border:1px solid #e6e9ef; font-size:1rem; outline:none; transition:box-shadow var(--transition); }
+.form input:focus{ box-shadow:0 6px 18px rgba(37,99,235,0.08); border-color:var(--accent); }
+.primary{ background:var(--accent); color:#fff; border:0; padding:12px 16px; border-radius:10px; cursor:pointer; font-weight:600; transition:transform var(--transition), opacity var(--transition); }
+.primary:hover{ transform:translateY(-2px); opacity:0.98; }
+
+.list-card{ margin-bottom:18px; }
+.todo-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+.todo-item{ display:flex; align-items:center; gap:12px; padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent); }
+.todo-left{ display:flex; align-items:center; gap:12px; flex:1; }
+.checkbox{ width:20px; height:20px; border-radius:6px; border:1px solid #e6e9ef; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.checkbox.checked{ background:var(--accent); color:#fff; border-color:var(--accent); }
+.todo-text{ font-size:1rem; word-break:break-word; }
+.todo-text.completed{ text-decoration:line-through; opacity:0.6; }
+.actions{ display:flex; gap:8px; }
+.action-btn{ background:transparent; border:0; cursor:pointer; padding:8px; border-radius:8px; transition:background var(--transition); }
+.action-btn:hover{ background:rgba(0,0,0,0.04); }
+.delete-btn{ color:var(--danger); }
+.edit-input{ padding:8px 10px; border-radius:8px; border:1px solid #e6e9ef; width:100%; }
+
+.empty-msg{ margin-top:12px; color:var(--muted); text-align:center; }
+
+/* Remove animation */
+.removing{ animation:fadeOut .25s ease forwards; }
+@keyframes fadeOut{ to{ opacity:0; transform:translateX(8px) scale(.98); height:0; padding:0; margin:0; } }
+
+/* Responsive: stack input + button on small screens */
+@media (max-width:480px){
+  .form{ flex-direction:column; }
+  .primary{ width:100%; }
+  .add-card{ padding:12px; }
+}
+
+/* Dark theme */
+body[data-theme='dark']{ background:#0b1220; color:#e6eef8; }
+body[data-theme='dark'] .card{ background:#071424; box-shadow: 0 6px 18px rgba(0,0,0,0.6); }
+body[data-theme='dark'] .form input{ background:#071424; color:#e6eef8; border-color:#123047; }
+body[data-theme='dark'] .primary{ background:#0ea5e9; }
+body[data-theme='dark'] .todo-item{ background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent); }
+body[data-theme='dark'] .icon-btn:hover{ background:rgba(255,255,255,0.04); }

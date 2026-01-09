@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>To‑Do List</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1 class="title">To‑Do List</h1>
+      <div class="controls">
+        <div class="meta" aria-live="polite"><span id="taskCount" class="count-badge">0 / 0</span></div>
+        <button id="clearCompleted" class="icon-btn" aria-label="Clear completed tasks" title="Clear completed">🧹</button>
+        <button id="clearAll" class="icon-btn" aria-label="Clear all tasks" title="Delete all">🗑️</button>
+        <button id="themeToggle" class="icon-btn" aria-pressed="false" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+
+    <section class="card add-card">
+      <form id="todoForm" class="form">
+        <input id="todoInput" type="text" placeholder="Add a new task..." aria-label="New task" autocomplete="off" />
+        <button id="addBtn" class="primary" aria-label="Add task">Add</button>
+      </form>
+    </section>
+
+    <section class="card list-card">
+      <ul id="todoList" class="todo-list" aria-live="polite" role="list"></ul>
+      <p id="emptyMsg" class="empty-msg">No tasks yet — add your first task!</p>
+    </section>
+
+    <footer class="app-footer">
+      <small>Built with ❤️</small>
+    </footer>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
